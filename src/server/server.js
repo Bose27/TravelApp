@@ -2,6 +2,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
 console.log(process.env.USERNAME);
+const fetch = require("node-fetch");
+const URL = require("url").URL;
 
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
@@ -10,9 +12,7 @@ projectData = {};
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const axios = require("axios").default;
-var URL = require("url").URL;
-var URLSearchParams = require("url-search-params-polyfill");
+//const axios = require("axios").default;
 
 // Start up an instance of app
 const app = express();
@@ -42,39 +42,43 @@ app.post("/", function (req, res) {
 // using geoname API to fetch lat and lang coordinate
 app.get("/getLatLang", (req, res) => {
   const url = `http://api.geonames.org/searchJSON?maxRows=10&operator=OR&q=${req.query.city}&name=${req.query.city}&username=${process.env.USERNAME}`;
-  axios
-    .get(url)
-    .then((resp) => {
-      res.send(JSON.stringify(resp.data.geonames[0]));
+  fetch(url)
+    .then(function (response) {
+      response.json().then(function (data) {
+        console.log(data.geonames[0]);
+        return res.send(JSON.stringify(data.geonames[0]));
+      });
     })
-    .catch((err) => {
-      res.end(JSON.stringify({ err: "There was some error" }));
+    .catch(function (err) {
+      console.warn("There was some error in get geonames call");
     });
 });
 
 // using weatherbit API to get the weather details of the place
 app.get("/getWeather", (req, res) => {
-  const url = `http://api.weatherbit.io/v2.0/current?lat=${req.query.lat}&lon=${req.query.long}&key=${process.env.WEATHERAPI}`;
-  axios
-    .get(url)
-    .then((resp) => {
-      res.send(JSON.stringify(resp.data));
+  const url = `http://api.weatherbit.io/v2.0/current?lat=${req.query.lat}&lon=${req.query.lng}&key=${process.env.WEATHERAPI}`;
+  fetch(url)
+    .then(function (response) {
+      response.json().then(function (data) {
+        return res.send(JSON.stringify(data));
+      });
     })
-    .catch((err) => {
-      res.end(JSON.stringify({ err: "There was some error" }));
+    .catch(function (err) {
+      console.warn("There was some error with get weatherbit api call");
     });
 });
 
 // using pixabay API to get image related to trip
 app.get("/getCityPics", (req, res) => {
-  const url = `http://pixabay.com/api/?key=${process.env.PIXABAYAPI}&q=${req.query.q}&image_type=photo`;
-  axios
-    .get(url)
-    .then((resp) => {
-      res.send(JSON.stringify(resp.data.hits[0]));
+  const url = `http://pixabay.com/api/?key=${process.env.PIXABAYAPI}&q=${req.q}&image_type=photo`;
+  fetch(url)
+    .then(function (response) {
+      response.json().then(function (data) {
+        return res.send(JSON.stringify(data.hits[0]));
+      });
     })
-    .catch((err) => {
-      res.end(JSON.stringify({ err: "There was some error" }));
+    .catch(function (err) {
+      console.warn("There was some error with get pixabay api call");
     });
 });
 

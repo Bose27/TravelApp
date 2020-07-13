@@ -1,1 +1,4 @@
-{ ‘presets’: ['@babel/preset-env'] }
+{
+  "presets": [["react-app", { "absoluteRuntime": false }]],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}

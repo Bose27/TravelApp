@@ -6,50 +6,52 @@
   </head>
   <body>
     <div id="app">
+      <div class="row">
       <div class="holder headline">
         <h1>Travel App</h1>
       </div>
       <div class="holder text">
         <h1>Plan your trip with us</h1>
-      </div>
-      <div class="holder form" id="form_container">
-        <div class="city_destination">
-          <label for="col destination">Place you want to visit: </label><br />
-          <input
-            id="destination"
-            placeholder="Please enter city name"
-            type="text"
-          />
-        </div>
-        <div class="col start_date">
-          <label for="start">Start date: </label><br />
-          <input id="start" placeholder="dd/mm/yyyy" type="date" />
-        </div>
-        <div class="col end_date">
-          <label for="end">End date: </label><br />
-          <input id="end" placeholder="dd/mm/yyyy" type="date" />
-        </div>
-        <div class="col status">
-          <p id="status"></p>
-        </div>
-        <div class="col submit" id="btn-container">
-          <button class="btn btn-primary" type="button" id="form-submit" onclick="return Client.getTripData();">
-            Submit
-          </button>
-        </div>
-        <div class="holder entry">
-          <div class="title">Trip Details</div>
-          <div class="result">
-            <img src="" id="city-img">
-            <p>The weather at the destination is: <span id="result-city"></span></p>
-            <p>The temperature at the destination is: <span id="result-temp"></span></p>
-            <p>The weather at the destination is: <span id="result-weather"></span></p>
-            <p>The population of the destination is: <span id="result-population"></span></p>
-            <p>The time remaining in the start of trip is: <span id="result-timeRemaining"></span></p>
-            <p>The length of the trip is: <span id="result-tripLength"></span></p>
+        <div class="holder form" id="form_container">
+          <div class="city_destination">
+            <label for="col destination">City you want to visit: </label><br />
+            <input
+              id="destination"
+              placeholder="Please enter city name"
+              type="text"
+            />
           </div>
+          <div class="col start_date">
+            <label for="start">Start date: </label><br />
+            <input id="start" placeholder="dd/mm/yyyy" type="date" />
+          </div>
+          <div class="col end_date">
+            <label for="end">End date: </label><br />
+            <input id="end" placeholder="dd/mm/yyyy" type="date" />
+          </div>
+          <div class="col status">
+            <p id="status"></p>
+          </div>
+          <div class="col submit" id="btn-container">
+            <button class="btn btn-primary" type="button" id="form-submit" onclick="return Client.getTripData();">
+              Submit
+            </button>
+          </div>
+      </div>
+      </div>
+      <div class="holder entry">
+        <div class="title"><h1>Trip Details</h1></div>
+        <div class="result">
+          <img src="" id="city-img">
+          <p>The weather at the destination is: <span id="result-city"></span></p>
+          <p>The temperature at the destination is: <span id="result-temp"></span></p>
+          <p>The weather at the destination is: <span id="result-weather"></span></p>
+          <p>The population of the destination is: <span id="result-population"></span></p>
+          <p>The time remaining in the start of trip is: <span id="result-timeRemaining"></span></p>
+          <p>The length of the trip is: <span id="result-tripLength"></span></p>
         </div>
-    </div>
+        </div>
+      </div>
     <script>
       // Check that service workers are supported
       if ("serviceWorker" in navigator) {
