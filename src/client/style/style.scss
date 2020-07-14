@@ -49,8 +49,8 @@ body {
   background-color: transparent !important;
   display: inline-block;
   button {
-    width: 50%;
-    height: 30%;
+    width: 40%;
+    height: 40%;
   }
 }
 
@@ -115,13 +115,14 @@ input {
   border: none;
 }
 
-button {
+button:hover {
   background: #3b4a6b;
   color: #f0d43a;
   font-size: 26px;
   font-family: "Oswald", sans-serif;
   border: none;
   box-shadow: 2px 4px 5px #444;
+  background-color: whitesmoke;
 }
 h1 {
   font-size: 36px;

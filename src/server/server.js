@@ -6,7 +6,7 @@ const fetch = require("node-fetch");
 const URL = require("url").URL;
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+//projectData = {};
 
 // Require Express to run server and routes
 const express = require("express");
@@ -31,7 +31,7 @@ app.use(express.static("dist"));
 // Setup Server
 app.get("/", function (req, res) {
   res.sendFile("dist/index.html");
-  res.send(projectData);
+  // res.send(projectData);
 });
 
 app.post("/", function (req, res) {
@@ -74,6 +74,7 @@ app.get("/getCityPics", (req, res) => {
   fetch(url)
     .then(function (response) {
       response.json().then(function (data) {
+        console.log(data);
         return res.send(JSON.stringify(data.hits[0]));
       });
     })
@@ -85,3 +86,6 @@ app.get("/getCityPics", (req, res) => {
 app.listen(3001, function () {
   console.log("Example app listening on port 3001!");
 });
+
+//export { app };
+module.exports = { app };
